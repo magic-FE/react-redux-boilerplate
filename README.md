@@ -1,7 +1,6 @@
 #react-redux-boilerplate
-  react+redux+react-hot-loader+react-router(async) and so on...
-  
-  react-router3 will console a warning , you can see . don't worry!
+
+  react+redux+react-router3(async) and so on...
   
   about test, I will write. please wait a moment! 
 
