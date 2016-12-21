@@ -1,6 +1,5 @@
 module.exports = paths => ({
-  REDUCER_TOOL: paths.src('store/reducerTool'),
-  FETCH: paths.src('fetch'),
+  UTILS: paths.src('utils'),
   COMPONENTS: paths.src('components'),
   CONTAINERS: paths.src('containers'),
   STYLES: paths.src('static/styles'),

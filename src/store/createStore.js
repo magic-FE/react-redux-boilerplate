@@ -1,10 +1,9 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
+import makeRootReducer from 'UTILS/reducerTool';
 import { browserHistory } from 'react-router';
 import { updateLocation } from 'REDUCERS/location';
-
-import makeRootReducer from './reducerTool';
 
 const logger = createLogger();
 export default (initialState = {}) => {
@@ -27,12 +26,14 @@ export default (initialState = {}) => {
   );
   store.asyncReducers = {};
   // store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
-  // if (module.hot) {
-  //   module.hot.accept('./reducerTool', () => {
-  //     const reducers = require('./reducerTool').default;
-  //     store.replaceReducer(reducers(store.asyncReducers));
-  //   });
-  // }
+  if (module.hot) {
+    module.hot.accept('../utils/reducerTool', () => {
+      System.import('../utils/reducerTool').then((module) => {
+        const makeReducer = module.default;
+        store.replaceReducer(makeReducer(store.asyncReducers));
+      });
+    });
+  }
 
   return store;
 };

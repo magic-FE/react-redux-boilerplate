@@ -1,5 +1,5 @@
-import HomeViewComponent from './components/HomeView';
+import HomeComponent from './components/HomeView';
 
 export default {
-  component: HomeViewComponent
+  component: HomeComponent
 };

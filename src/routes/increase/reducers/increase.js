@@ -1,4 +1,4 @@
-import { createReducer } from 'REDUCER_TOOL';
+import { createReducer } from 'UTILS/reducerTool';
 
 const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
 /**
@@ -16,7 +16,7 @@ const incrementBase = (value = 1) => ({
  */
 const doubleAsync = () => (dispatch, getState) => {
   setTimeout(() => {
-    dispatch(incrementBase(getState().counter));
+    dispatch(incrementBase(getState().increase));
   }, 1200);
 };
 const increment = () => incrementBase(1);

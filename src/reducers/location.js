@@ -1,5 +1,3 @@
-import { createReducer } from 'REDUCER_TOOL';
-
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -18,11 +16,9 @@ export function locationChange(location = '/') {
 // ------------------------------------
 // Specialized Action Creator
 // ------------------------------------
-export const updateLocation = ({ dispatch }) => nextLocation => dispatch(locationChange(nextLocation));
+export const updateLocation = ({ dispatch }) =>
+  nextLocation =>
+  dispatch(locationChange(nextLocation));
 
-// ------------------------------------
-// Reducer
-// ------------------------------------
-export default createReducer({
-  [LOCATION_CHANGE]: (state, action) => action.payload
-}, null);
+export default (state = null, action) =>
+(action.type === LOCATION_CHANGE ? action.payload : state);

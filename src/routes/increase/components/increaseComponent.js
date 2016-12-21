@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const Counter = props => (
+export const Increase = props => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Counter: {props.counter}</h2>
+    <h2>Counter: {props.increase}</h2>
     <button className="btn btn-default" onClick={props.increment}>
       Increment
     </button>
@@ -13,10 +13,10 @@ export const Counter = props => (
   </div>
 );
 
-Counter.propTypes = {
-  counter: React.PropTypes.number.isRequired,
+Increase.propTypes = {
+  increase: React.PropTypes.number.isRequired,
   doubleAsync: React.PropTypes.func.isRequired,
   increment: React.PropTypes.func.isRequired
 };
 
-export default Counter;
+export default Increase;
