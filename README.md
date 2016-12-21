@@ -13,7 +13,8 @@ $ npm start
 ```
 ## Related issue
  1. [react-hot-loader do not support with async router](https://github.com/gaearon/react-hot-boilerplate/pull/61#issuecomment-218835358)
- 2. [router3 will console a warning with react-hot loader](https://github.com/gaearon/react-hot-loader/issues/249)
+ 2. [router3 will console a warning with react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/249)
+
 ## License
 
 MIT
