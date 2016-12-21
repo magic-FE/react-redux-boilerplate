@@ -6,25 +6,19 @@ const createChildRoute = (path, store) => ({
   path,
   getComponent(nextState, cb) {
     const injectReducer = injectReducerFactory(store);
-    // System.import(`./${path}/index`).then((routeModule) => {
-    //   const { container, reducer } = routeModule;
-    //   injectReducer(`${path}`, reducer);
-    //   cb(null, container);
-    // });
-    require.ensure([], (require) => {
-      const routeModule = require('./increase');
+    System.import(`./${path}/index`).then((routeModule) => {
       const { container, reducer } = routeModule;
-      injectReducer('increase', reducer);
+      injectReducer(`${path}`, reducer);
       cb(null, container);
-    }, 'increase');
+    });
   }
 });
-// const paths = ['increase'];
+const paths = ['increase'];
 export const createRoutes = store => ({
   path: '/',
   component: CoreLayout,
   indexRoute: Home,
-  childRoutes: [createChildRoute('increase', store)]
+  childRoutes: paths.map(path => createChildRoute(path, store))
 });
 
 export default createRoutes;

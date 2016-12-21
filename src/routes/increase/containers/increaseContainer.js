@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { actions } from '../reducers/increase';
+import { actions } from '../reducers/Increase';
 
-import IncreaseComponents from '../components/increaseComponent';
+import IncreaseComponents from '../components/IncreaseComponent';
 
 const mapDispatchToProps = actions;
 
