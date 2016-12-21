@@ -1,7 +1,6 @@
 #react-redux-boilerplate
-  react+redux+react-hot-loader+react-router(async) and so on...
-  
-  react-router3 will console a warning , you can see[#249](https://github.com/gaearon/react-hot-loader/issues/249) . don't worry!
+
+  react+redux+react-router3(async) and so on...
   
   about test, I will write. please wait a moment! 
 
@@ -12,25 +11,9 @@ $ git clone https://github.com/likun7981/react-redux-bolierplate
 $ yarn install(or npm install)
 $ npm start
 ```
+## Related issue
+ [react-hot-loader do not support with async router](https://github.com/gaearon/react-hot-boilerplate/pull/61#issuecomment-218835358)
+ [router3 will console a warning with react-hot loader](https://github.com/gaearon/react-hot-loader/issues/249)
 ## License
 
-(The MIT License)
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT
