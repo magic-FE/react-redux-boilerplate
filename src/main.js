@@ -13,6 +13,7 @@ const store = createStore(initialState);
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('root');
+console.log(ReactDOM);
 let render = () => {
   const routes = require('./routes/index').default(store); // !important
   ReactDOM.render(
@@ -21,14 +22,7 @@ let render = () => {
   );
 };
 if (__DEV__ && module.hot) {
-  const AppContainer = require('react-hot-loader').AppContainer; // eslint-disable-line
-  const renderApp = () => {
-    const routes = require('./routes/index').default(store); // !important
-    ReactDOM.render(
-      <AppContainer><App store={store} routes={routes} /></AppContainer>,
-      MOUNT_NODE
-    );
-  };
+  const renderApp = render;
   const renderError = (error) => {
     const RedBox = require('redbox-react').default; // eslint-disable-line
     ReactDOM.render(<RedBox error={error} />, MOUNT_NODE);
@@ -41,6 +35,7 @@ if (__DEV__ && module.hot) {
     }
   };
   module.hot.accept('./routes/index', () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });
 }

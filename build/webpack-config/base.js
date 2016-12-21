@@ -23,7 +23,6 @@ module.exports = (paths) => {
   });
   if (__DEV__) {
     App.unshift('webpack-hot-middleware/client');
-    App.unshift('react-hot-loader/patch');
   }
   return {
     context: paths.root(),

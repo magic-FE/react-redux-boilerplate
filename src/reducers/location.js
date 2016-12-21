@@ -12,7 +12,6 @@ export function locationChange(location = '/') {
     payload: location
   };
 }
-
 // ------------------------------------
 // Specialized Action Creator
 // ------------------------------------

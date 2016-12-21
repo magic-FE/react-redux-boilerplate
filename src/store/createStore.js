@@ -25,13 +25,15 @@ export default (initialState = {}) => {
     )
   );
   store.asyncReducers = {};
-  // store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
+
+  // Anywhere, you can call store.unsubscribeHistory() to cancel subscribe;
+  store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
+
+  // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
     module.hot.accept('../utils/reducerTool', () => {
-      System.import('../utils/reducerTool').then((module) => {
-        const makeReducer = module.default;
-        store.replaceReducer(makeReducer(store.asyncReducers));
-      });
+      const makeReducer = require('../utils/reducerTool').default;
+      store.replaceReducer(makeReducer(store.asyncReducers));
     });
   }
 
