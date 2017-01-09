@@ -1,5 +1,4 @@
 import React from 'react';
-import DuckImage from '../assets/magic.png';
 import './HomeView.less';
 
 export const HomeView = () => (
@@ -8,7 +7,7 @@ export const HomeView = () => (
     <img
       alt="This is a duck, because Redux!"
       className="duck"
-      src={DuckImage}
+      src="/images/magic.png"
     />
   </div>
 );

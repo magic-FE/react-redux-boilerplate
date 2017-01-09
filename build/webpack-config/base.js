@@ -18,7 +18,7 @@ module.exports = (paths) => {
     return debug(
       `Package "${dep}" was not found as an npm dependency in package.json; ` +
       `it won't be included in the webpack vendor bundle.
-       Consider removing it from \`Vendors\` in this file`
+       Consider removing it from "Vendors" in this file`
     );
   });
   if (__DEV__) {
@@ -33,6 +33,10 @@ module.exports = (paths) => {
       filename: '[name].[hash:8].js',
       path: paths.dist(),
       publicPath: '/'
+    },
+    performance: {
+      hints: false,
+      maxAssetSize: 2000000,
     }
   };
 };

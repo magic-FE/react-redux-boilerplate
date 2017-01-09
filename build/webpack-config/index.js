@@ -14,14 +14,13 @@ module.exports = {
   },
   output: base.output,
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
     alias
   },
   devtool: base.devtool,
   module: {
     loaders
   },
-  performance: { hints: false },
+  performance: base.performance,
   devServer: base.devServer,
   plugins
 };

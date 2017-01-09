@@ -3,17 +3,12 @@ import ReactDOM from 'react-dom';
 import createStore from './store/createStore';
 import App from './containers/AppContainer';
 
-// ========================================================
-// Store Instantiation
-// ========================================================
+// store initial
 const initialState = window.INITIAL_STATE;
 const store = createStore(initialState);
 
-// ========================================================
-// Render Setup
-// ========================================================
+// some setup
 const MOUNT_NODE = document.getElementById('root');
-console.log(ReactDOM);
 let render = () => {
   const routes = require('./routes/index').default(store); // !important
   ReactDOM.render(
@@ -39,7 +34,6 @@ if (__DEV__ && module.hot) {
     render();
   });
 }
-// ========================================================
-// Go!
-// ========================================================
+
+// start render
 render();

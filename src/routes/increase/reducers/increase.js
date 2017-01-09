@@ -1,4 +1,4 @@
-import { createReducer } from 'UTILS/reducerTool';
+import createReducers from 'UTILS/creators';
 
 const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
 /**
@@ -21,11 +21,11 @@ const doubleAsync = () => (dispatch, getState) => {
 };
 const increment = () => incrementBase(1);
 
-export const actions = {
+export const actionCreatorMaps = {
   increment,
   doubleAsync
 };
 
-export default createReducer({
+export default createReducers({
   [COUNTER_INCREMENT]: (state, action) => state + action.payload
 }, 0);

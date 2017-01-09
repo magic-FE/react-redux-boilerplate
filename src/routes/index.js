@@ -1,24 +1,14 @@
-import CoreLayout from 'LAYOUTS/CoreLayout/CoreLayout';
-import { injectReducerFactory } from 'UTILS/reducerTool';
+import CoreLayout from 'LAYOUTS/CoreLayout';
 import Home from './home';
+import Increase from './increase';
 
-const createChildRoute = (path, store) => ({
-  path,
-  getComponent(nextState, cb) {
-    const injectReducer = injectReducerFactory(store);
-    System.import(`./${path}/index`).then((routeModule) => {
-      const { container, reducer } = routeModule;
-      injectReducer(`${path}`, reducer);
-      cb(null, container);
-    });
-  }
-});
-const paths = ['increase'];
 export const createRoutes = store => ({
   path: '/',
   component: CoreLayout,
   indexRoute: Home,
-  childRoutes: paths.map(path => createChildRoute(path, store))
+  childRoutes: [
+    Increase(store)
+  ]
 });
 
 export default createRoutes;

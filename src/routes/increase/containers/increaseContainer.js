@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { actions } from '../reducers/Increase';
+import { actionCreatorMaps } from '../reducers/increase';
 
 import IncreaseComponents from '../components/IncreaseComponent';
 
-const mapDispatchToProps = actions;
+const mapDispatchToProps = actionCreatorMaps;
 
 const mapStateToProps = state => ({
   increase: state.increase
