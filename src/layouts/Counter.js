@@ -10,19 +10,19 @@ export default class Counter extends Component {
     this.interval = setInterval(this.tick.bind(this), 1000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   tick() {
     this.setState({
       counter: this.state.counter + 1
     });
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   render() {
     return (
       <h2>Counter: {this.state.counter}</h2>
-   );
+    );
   }
 }

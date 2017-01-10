@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const env = require('../base-config/environment');
 
-const __DEV__ = env.__DEV__;
-const __PROD__ = env.__PROD__;
+const isDev = env.isDev;
+const isProd = env.isProd;
 
 module.exports = (paths) => {
   const plugins = [
@@ -21,28 +21,33 @@ module.exports = (paths) => {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['common']
+      names: ['vendors']
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: env.config.postcss
+      }
     })
   ];
-  if (__DEV__) {
+  if (isDev) {
     debug('Enable HMR,noErrors for development(开启开发环境插件)');
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin() //报错时不退出webpack进程
+      new webpack.NoErrorsPlugin() // 报错时不退出webpack进程
     );
   } else {
     debug('Apply ExtractTextPlugin.(非开发环境开启ExtractTextPlugin)');
     plugins.push(
-      new ExtractTextPlugin('[name].[contenthash].css', {
+      new ExtractTextPlugin({
+        filename: '[name].[hash:8].css',
         allChunks: true
       })
     );
   }
-  if (__PROD__) {
-    debug('Enable OccurenceOrder,Dedupe,UglifyJs for production(开启生产环境打包插件)');
+  if (isProd) {
+    debug('Enable OccurenceOrder,UglifyJs for production(开启生产环境打包插件)');
     plugins.push(
-      new webpack.optimize.OccurrenceOrderPlugin(), //根据模块使用情况 排序模块序号
-      new webpack.optimize.DedupePlugin(), //避免重复模块
+      new webpack.optimize.OccurrenceOrderPlugin(), // 根据模块使用情况 排序模块序号
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           unused: true,

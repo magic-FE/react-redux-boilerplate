@@ -7,20 +7,12 @@ const loaders = require('./loaders')();
 const plugins = require('./plugins')(paths);
 
 debug('Creating configuration.(创建配置)');
-module.exports = {
-  entry: {
-    app: base.entry_app,
-    vendors: base.entry_vendors
-  },
-  output: base.output,
+module.exports = Object.assign({
+  plugins,
   resolve: {
     alias
   },
-  devtool: base.devtool,
   module: {
     loaders
-  },
-  performance: base.performance,
-  devServer: base.devServer,
-  plugins
-};
+  }
+}, base);

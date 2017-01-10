@@ -2,7 +2,7 @@ const debug = require('debug')('app:webpack:loaders');
 const env = require('../base-config/environment');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const __DEV__ = env.__DEV__; // eslint-disable-line 
+const isDev = env.isDev;
 module.exports = () => {
   const loaders = [{
     test: /\.(js|jsx)$/,
@@ -13,10 +13,10 @@ module.exports = () => {
     loader: 'json-loader'
   }, {
     test: /\.css$/,
-    loaders: ['style-loader', 'css-loader']
+    loaders: ['style-loader', 'css-loader', 'postcss-loader']
   }, {
     test: /\.less$/,
-    loaders: ['style-loader', 'css-loader', 'less-loader']
+    loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
   }, {
     test: /\.woff(\?.*)?$/,
     loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'
@@ -39,12 +39,12 @@ module.exports = () => {
     test: /\.(png|jpg)$/,
     loader: 'url-loader?limit=8192'
   }];
-  if (!__DEV__) {
+  if (!isDev) {
     debug('Apply ExtractTextPlugin to CSS loaders.(非开发环境应用ExtractTextPluginLoaders到css loaders)');
     loaders.filter(loader => loader.loaders && loader.loaders.find(name => /css/.test(name.split('?')[0]))).forEach((loader) => {
       const first = loader.loaders[0];
       const rest = loader.loaders.slice(1);
-      loader.loader = ExtractTextPlugin.extract(first, rest.join('!'));
+      loader.loader = ExtractTextPlugin.extract({ fallbackLoader: first, loader: rest.join('!') });
       delete loader.loaders;
     });
   }
