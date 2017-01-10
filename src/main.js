@@ -16,7 +16,7 @@ let render = () => {
     MOUNT_NODE
   );
 };
-if (__DEV__ && module.hot) {
+if (isDev && module.hot) {
   const renderApp = render;
   const renderError = (error) => {
     const RedBox = require('redbox-react').default; // eslint-disable-line

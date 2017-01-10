@@ -11,10 +11,9 @@ const eslintrc = {
     }
   },
   "globals": {
-    "__DEV__": false,
-    "__TEST__": false,
-    "__PROD__": false,
-    "__COVERAGE__": false,
+    "isDev": false,
+    "isTest": false,
+    "isProd": false,
     "window": false
   },
   "parser": "babel-eslint",

@@ -10,7 +10,7 @@ const startCompile = () => {
   return Promise.resolve()
     .then(() => compiler(webpackConfig))
     .then((stats) => {
-      if (stats.hasWarnings() && env.__PROD__) { // eslint-disable-line
+      if (stats.hasWarnings() && env.isProd) { // eslint-disable-line
         throw new Error('Production not allow warnig, exit .');
       }
       debug('Copying static assets to dist folder.');
