@@ -1,16 +1,17 @@
 const debug = require('debug')('app:bin:compile');
 const fs = require('fs-extra');
+const chalk = require('chalk');
 const compiler = require('../build/compiler');
 const env = require('../build/base-config/environment');
 const paths = require('../build/base-config/path');
 const webpackConfig = require('../build/webpack-config');
 
 const startCompile = () => {
-  debug(`Start compile with env '${process.env.NODE_ENV}'`);
+  debug(`Start compile with env '${chalk.green(process.env.NODE_ENV)}'`);
   return Promise.resolve()
     .then(() => compiler(webpackConfig))
     .then((stats) => {
-      if (stats.hasWarnings() && env.isProd) { // eslint-disable-line
+      if (stats.hasWarnings() && env.isProd) {
         throw new Error('Production not allow warnig, exit .');
       }
       debug('Copying static assets to dist folder.');

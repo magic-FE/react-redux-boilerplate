@@ -12,14 +12,14 @@ const webpackCompiler = (webpackConfig) => {
       }
       const jsonStats = stats.toJson();
       if (stats.hasErrors()) {
-        debug('Webpack compiler with some errors.');
+        debug('Webpack compile with some errors.');
         debug(chalk.red(jsonStats.errors.join('\n')));
         return reject(new Error('Webpack compiler with some errors.'));
       } else if (stats.hasWarnings()) {
-        debug('Webpack compiler with some warnings.');
+        debug('Webpack compile with some warnings.');
         debug(chalk.yellow(jsonStats.warnings.join('\n')));
       } else {
-        debug('Webpack compiler no Errors or no Warnings');
+        debug('Webpack compile no Errors or no Warnings');
       }
       return resolve(stats);
     });

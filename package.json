@@ -7,12 +7,15 @@
     "start": "better-npm-run start",
     "compile": "better-npm-run compile",
     "lint": "eslint src bin build tests",
+    "lint:fix": "npm run lint -- --fix",
     "start:dist": "better-npm-run start:dist"
   },
   "keywords": [
     "react",
     "redux",
-    "boilerplate"
+    "boilerplate",
+    "starkit",
+    "template"
   ],
   "betterScripts": {
     "start": {
@@ -22,7 +25,7 @@
       }
     },
     "compile": {
-      "command": "npm run lint && node bin/compile",
+      "command": "rimraf dist/* && npm run lint && node bin/compile",
       "env": {
         "DEBUG": "app:*:compile*",
         "NODE_ENV": "production"
@@ -77,6 +80,7 @@
     "postcss-loader": "^1.2.1",
     "redbox-react": "^1.3.3",
     "redux-logger": "^2.7.4",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "2.2.0-rc.3",

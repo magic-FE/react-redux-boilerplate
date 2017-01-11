@@ -9,6 +9,7 @@ const store = createStore(initialState);
 
 // some setup
 const MOUNT_NODE = document.getElementById('root');
+
 let render = () => {
   const routes = require('./routes/index').default(store); // !important
   ReactDOM.render(

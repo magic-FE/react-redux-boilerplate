@@ -11,6 +11,12 @@ module.exports = {
     performance: {
       hints: 'error',
       maxEntrypointSize: 1500000
+    },
+    stats: {
+      chunkModules: false,
+      colors: true,
+      chunks: false,
+      children: false
     }
   },
   defaults: {
