@@ -25,7 +25,7 @@
       }
     },
     "compile": {
-      "command": "rimraf dist/* && npm run lint && node bin/compile",
+      "command": "rimraf dist/* && npm run lint:fix && node bin/compile",
       "env": {
         "DEBUG": "app:*:compile*",
         "NODE_ENV": "production"

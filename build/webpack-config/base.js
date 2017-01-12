@@ -31,6 +31,6 @@ module.exports = (paths) => {
       path: paths.dist(),
       publicPath: '/'
     },
-    performance: env.config.performance
+    performance: envConfig.performance
   };
 };

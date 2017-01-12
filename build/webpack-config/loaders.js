@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = env.isDev;
 module.exports = () => {
-  const loaders = [{
+  const loaderArray = [{
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
     loader: 'babel-loader'
@@ -41,12 +41,13 @@ module.exports = () => {
   }];
   if (!isDev) {
     debug('Apply ExtractTextPlugin to CSS loaders.(非开发环境应用ExtractTextPluginLoaders到css loaders)');
-    loaders.filter(loader => loader.loaders && loader.loaders.find(name => /css/.test(name.split('?')[0]))).forEach((loader) => {
-      const first = loader.loaders[0];
-      const rest = loader.loaders.slice(1);
-      loader.loader = ExtractTextPlugin.extract({ fallbackLoader: first, loader: rest.join('!') });
-      delete loader.loaders;
-    });
+    loaderArray.filter(loaderObj => loaderObj.loaders && loaderObj.loaders.find(name => /css/.test(name.split('?')[0])))
+      .forEach((loaderObj) => {
+        const first = loaderObj.loaders[0]; // except style-loader
+        const rest = loaderObj.loaders.slice(1);
+        loaderObj.loader = ExtractTextPlugin.extract({ fallbackLoader: first, loader: rest.join('!') });
+        delete loaderObj.loaders;
+      });
   }
-  return loaders;
+  return loaderArray;
 };

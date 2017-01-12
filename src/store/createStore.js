@@ -28,21 +28,9 @@ export default (initialState = {}) => {
     ), { location }
   );
   browserHistory.listen(updateLocation(store));
+
   // inject global reducers
   store.injectAll(globalReducerMaps);
-
-  // store.asyncReducers = {};
-
-  // // Anywhere, you can call store.unsubscribeHistory() to cancel subscribe;
-  // store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
-
-  // // Make reducers hot reloadable, see http://mxs.is/googmo
-  // if (module.hot) {
-  //   module.hot.accept('../utils/reducerTool', () => {
-  //     const makeReducer = require('../utils/reducerTool').default;
-  //     store.replaceReducer(makeReducer(store.asyncReducers));
-  //   });
-  // }
 
   return store;
 };
