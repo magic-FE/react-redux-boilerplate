@@ -10,7 +10,7 @@ export const Header = () => (
     </IndexLink>
     {' · '}
     <Link to="/increase" activeClassName="route--active">
-      Increase
+      Increase1
     </Link>
   </div>
 );

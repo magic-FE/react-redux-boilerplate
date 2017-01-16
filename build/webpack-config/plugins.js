@@ -25,15 +25,16 @@ module.exports = (paths) => {
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: env.config.postcss
+        // postcss: env.config.postcss,
+        css: env.config.css
       }
     })
   ];
   if (isDev) {
-    debug('Enable HMR,noErrors for development(开启开发环境插件)');
+    debug('Enable HMR,NoEmitOnErrors for development(开启开发环境插件)');
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin() // 报错时不退出webpack进程
+      new webpack.NoEmitOnErrorsPlugin() // 报错时不退出webpack进程
     );
   } else {
     debug('Apply ExtractTextPlugin.(非开发环境开启ExtractTextPlugin)');

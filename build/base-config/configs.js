@@ -51,6 +51,11 @@ module.exports = {
         safe: true,
         sourcemap: true
       })
-    ]
+    ],
+    css: {
+      minimize: true,
+      sourceMap: true,
+      context: '/'
+    }
   }
 };
