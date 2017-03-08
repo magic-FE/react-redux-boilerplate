@@ -3,7 +3,9 @@ const envConfigs = require('./configs');
 
 module.exports = {
   /**
-   * why? https://fb.me/react-minification ,http://stackoverflow.com/questions/30030031
+   * why?  you can see:
+   * https://fb.me/react-minification
+   * http://stackoverflow.com/questions/30030031
    */
   'process.env': {
     NODE_ENV: JSON.stringify(NODE_ENV)

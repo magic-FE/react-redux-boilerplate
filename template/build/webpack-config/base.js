@@ -29,7 +29,7 @@ module.exports = (paths) => {
     output: {
       filename: '[name].[hash:8].js',
       path: paths.dist(),
-      publicPath: '/'
+      publicPath: ''
     },
     performance: envConfig.performance
   };

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 export const Increase = props => (
-  <div style={{ margin: '0 auto' }} >
+  <div >
     <h2>Counter: {props.increase}</h2>
     <button className="btn btn-default" onClick={props.increment}>
       Increment
