@@ -19,8 +19,7 @@ module.exports = () => {
         loader: 'style-loader'
       }, {
         loader: 'css-loader',
-        // use 'options' for ExtractTextPlugin is not effect, so use 'query' to replace 'options'
-        query: {
+        options: {
           minimize: isProd,
           sourceMap: !isProd
         }
@@ -48,7 +47,7 @@ module.exports = () => {
       .forEach((rule) => {
         const first = rule.use[0];
         const rest = rule.use.slice(1);
-        rule.loader = ExtractTextPlugin.extract({ fallbackLoader: first, loader: rest });
+        rule.loader = ExtractTextPlugin.extract({ fallback: first, loader: rest });
         delete rule.use;
       });
   }

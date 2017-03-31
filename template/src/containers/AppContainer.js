@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory, Router } from 'react-router';
+import { hashHistory, Router } from 'react-router';
 import { Provider } from 'react-redux';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     const { routes, store } = this.props;
     return (
       <Provider store={store}>
-        <Router history={browserHistory} >
+        <Router history={hashHistory} >
           {routes}
         </Router>
       </Provider>

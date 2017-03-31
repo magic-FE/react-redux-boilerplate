@@ -11,15 +11,15 @@ module.exports = {
     },
     type: {
       type: 'list',
-      message: 'Which type do you want?',
+      message: 'Do you want to use router?',
       choices:[{
-        name: 'Single-Page(no react-router)',
-        value: 'single',
-        short: 'Single(No-Router)'
-      },{
-        name: 'Multi-Page(with react-router)',
+        name: 'With React-Router',
         value: 'multi',
         short: 'Multi(With-Router)'
+      },{
+        name: 'No React-Router',
+        value: 'single',
+        short: 'Single(No-Router)'
       }]
     },
     stateContainer:{
@@ -33,7 +33,7 @@ module.exports = {
     eslint: {
       type: 'confirm',
       require: true,
-      message: 'Use linting with ESLint?',
+      message: 'lint JS with ESLint?',
       default: true
     },
     eslintConfig: {

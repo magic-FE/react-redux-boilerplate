@@ -5,9 +5,6 @@ const paths = require('./base-config/path');
 
 const app = express();
 
-// This rewrites all routes requests to the root /index.html file
-app.use(require('connect-history-api-fallback')());
-
 // Apply gzip compression
 app.use(require('compression')());
 
