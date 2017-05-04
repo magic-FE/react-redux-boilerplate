@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const env = require('../base-config/environment');
 
-const isDev = env.isDev;
-const isProd = env.isProd;
+const isDev = env.__DEV__;
+const isProd = env.__PRO__;
 
 module.exports = (paths) => {
   const plugins = [
@@ -30,13 +30,13 @@ module.exports = (paths) => {
     })
   ];
   if (isDev) {
-    debug('Enable HMR,noErrors for development(开启开发环境插件)');
+    debug('Enable HMR,noErrors for development');
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin() // 报错时不退出webpack进程
     );
   } else {
-    debug('Apply ExtractTextPlugin.(非开发环境开启ExtractTextPlugin)');
+    debug('Apply ExtractTextPlugin.');
     plugins.push(
       new ExtractTextPlugin({
         filename: '[name].[hash:8].css',
@@ -45,7 +45,7 @@ module.exports = (paths) => {
     );
   }
   if (isProd) {
-    debug('Enable OccurenceOrder,UglifyJs for production(开启生产环境打包插件)');
+    debug('Enable OccurenceOrder,UglifyJs for production.');
     plugins.push(
       new webpack.optimize.OccurrenceOrderPlugin(), // 根据模块使用情况 排序模块序号
       new webpack.optimize.UglifyJsPlugin({

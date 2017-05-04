@@ -6,7 +6,7 @@ const base = require('./base')(paths);
 const loaders = require('./loaders')();
 const plugins = require('./plugins')(paths);
 
-debug('Creating configuration.(创建配置)');
+debug('Creating configuration.');
 module.exports = Object.assign({
   plugins,
   resolve: {

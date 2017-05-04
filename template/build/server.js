@@ -9,11 +9,11 @@ const app = express();
 app.use(require('compression')());
 
 // Apply Webpack HMR Middleware
-if (env.isDev) {
+if (env.__DEV__) {
   const webpack = require('webpack');
   const webpackConfig = require('./webpack-config');
   const compiler = webpack(webpackConfig);
-  debug('Apply webpack dev and HMR middleware(开启开发环境插件 webpack-dev 和 HRM 中间件)');
+  debug('Apply webpack dev and HMR middleware');
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
     contentBase: paths.src(),

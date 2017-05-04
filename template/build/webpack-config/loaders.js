@@ -2,8 +2,8 @@ const debug = require('debug')('app:webpack:loaders');
 const env = require('../base-config/environment');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const isDev = env.isDev;
-const isProd = env.isProd;
+const isDev = env.__DEV__;
+const isProd = env.__PRO__;
 module.exports = () => {
   const rules = [{
     test: /\.(js|jsx)$/,
@@ -13,25 +13,34 @@ module.exports = () => {
     test: /\.json$/,
     use: [{ loader: 'json-loader' }]
   }, {
-    test: /\.(css|less)$/,
-    use: [
-      {
-        loader: 'style-loader'
-      }, {
-        loader: 'css-loader',
-        options: {
-          minimize: isProd,
-          sourceMap: !isProd
-        }
-      }, {
-        loader: 'postcss-loader'
-      }, {
-        loader: 'less-loader',
-        options: {
-          sourceMap: !isProd
-        }
+    test: /\.css$/,
+    use: [{
+      loader: 'style-loader'
+    }, {
+      loader: 'css-loader',
+      options: {
+        minimize: isProd
       }
-    ]
+    }, {
+      loader: 'postcss-loader'
+    }]
+  }, {
+    test: /\.less$/,
+    use: [{
+      loader: 'style-loader'
+    }, {
+      loader: 'css-loader',
+      options: {
+        minimize: isProd
+      }
+    }, {
+      loader: 'postcss-loader'
+    }, {
+      loader: 'less-loader',
+      options: {
+        sourceMap: !isProd
+      }
+    }]
   }, {
     test: /\.(png|jpg)$/,
     use: [{

@@ -10,7 +10,7 @@ export default (initialState = {}) => {
   const enhancers = [];
   const globalReducerMaps = [];
 
-  if (isDev) {
+  if (__DEV__) {
     const devToolsExtension = window.devToolsExtension;
     if (typeof devToolsExtension === 'function') {
       enhancers.push(devToolsExtension());

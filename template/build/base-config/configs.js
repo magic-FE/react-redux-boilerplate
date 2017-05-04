@@ -2,13 +2,13 @@ module.exports = {
   development: {
     performance: {
       hints: false,
-      maxAssetSize: 2000000
+      maxAssetSize: 2000000 // 2.5M
     }
   },
   production: {
     performance: {
       hints: 'error',
-      maxEntrypointSize: 1500000
+      maxEntrypointSize: 1500000 // 1.5M
     },
     stats: {
       chunkModules: false,

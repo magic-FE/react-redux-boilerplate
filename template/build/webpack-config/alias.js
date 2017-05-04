@@ -1,8 +1,12 @@
+/**
+ * https://docs.npmjs.com/files/package.json#name,
+ * this alias name have to not support package name;
+ */
 module.exports = paths => ({
-  UTILS: paths.src('utils'),
-  COMPONENTS: paths.src('components'),
-  CONTAINERS: paths.src('containers'),
-  STYLES: paths.src('styles'),
-  REDUCERS: paths.src('reducers'),
-  LAYOUTS: paths.src('layouts')
+  '$utils': paths.src('utils'),
+  '$components': paths.src('components'),
+  '$containers': paths.src('containers'),
+  '$styles': paths.src('styles'),
+  '$reducers': paths.src('reducers'),
+  '$layouts': paths.src('layouts')
 });

@@ -1,7 +1,7 @@
 const debug = require('debug')('app:webpack:base');
 const env = require('../base-config/environment');
 
-const isDev = env.isDev;
+const isDev = env.__DEV__;
 const envConfig = env.config;
 
 const pkg = require('../../package.json');
@@ -25,7 +25,7 @@ module.exports = (paths) => {
       app: App,
       vendors: Vendors
     },
-    devtool: isDev ? 'eval' : 'cheap-source-map',
+    devtool: isDev ? 'eval' : false,
     output: {
       filename: '[name].[hash:8].js',
       path: paths.dist(),

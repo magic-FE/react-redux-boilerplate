@@ -17,7 +17,7 @@ const render = () => {
     MOUNT_NODE
   );
 };
-if (isDev && module.hot) {
+if (__DEV__ && module.hot) {
   module.hot.accept('./routes/index', () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
