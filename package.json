@@ -2,7 +2,7 @@
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
   "description": "bolierplate for react-redux",
-  "main": "src/main.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "better-npm-run start",
     "compile": "better-npm-run compile",
