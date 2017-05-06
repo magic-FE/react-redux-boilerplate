@@ -11,3 +11,5 @@ function handleResponse(response: Response) {
     var error: string = response.message; // Works!
   }
 }
+
+if(a)  a = 1;
