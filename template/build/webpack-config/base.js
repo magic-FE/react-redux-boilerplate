@@ -6,13 +6,15 @@ const envConfig = env.config;
 
 const pkg = require('../../package.json');
 
-module.exports = (paths) => {
-  const App = [paths.src('main.js')];
-  const Vendors = envConfig.vendors.filter((dep) => {
-    if (pkg.dependencies[dep]) return true;
+module.exports = paths => {
+  const App = [paths.src('app.js')];
+  const Vendors = envConfig.vendors.filter(dep => {
+    if (pkg.dependencies[dep]) {
+      return true;
+    }
     return debug(
       `Package "${dep}" was not found as an npm dependency in package.json; ` +
-      `it won't be included in the webpack vendor bundle.
+        `it won't be included in the webpack vendor bundle.
        Consider removing it from "Vendors" in this file`
     );
   });
@@ -23,14 +25,14 @@ module.exports = (paths) => {
     context: paths.root(),
     entry: {
       app: App,
-      vendors: Vendors
+      vendors: Vendors,
     },
     devtool: isDev ? 'eval' : false,
     output: {
       filename: '[name].[hash:8].js',
       path: paths.dist(),
-      publicPath: ''
+      publicPath: '',
     },
-    performance: envConfig.performance
+    performance: envConfig.performance,
   };
 };
