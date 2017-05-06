@@ -6,8 +6,8 @@
   "scripts": {
     "start": "better-npm-run start",
     "compile": "better-npm-run compile",
-    "eslint:check": "eslint src",
-    "flow:check": "flow",
+    "lint": "eslint src",
+    "flow": "flow",
     "lint:fix": "npm run lint -- --fix",
     "start:dist": "better-npm-run start:dist"
   },
@@ -40,6 +40,9 @@
       }
     }
   },
+  "pre-commit": [
+    "lint"
+  ],
   "author": "likun",
   "license": "MIT",
   "devDependencies": {
@@ -94,8 +97,5 @@
     "react-router": "^4.1.1",
     "redux": "^3.6.0",
     "whatwg-fetch": "^2.0.3"
-  },
-  "pre-commit": [
-    "eslint:check"
-  ]
+  }
 }
