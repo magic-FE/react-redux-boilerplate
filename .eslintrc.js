@@ -49,7 +49,9 @@ function getBaseConfig() {
       ecmaVersion: 6,
       sourceType: 'module',
     },
-
+    extends:[
+      "plugin:flowtype/recommended"
+    ]
     plugins: [
       'babel',
       'flowtype',

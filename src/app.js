@@ -1,4 +1,3 @@
-/* @flow */
 type Success = { success: true, value: boolean };
 type Failed = { error: false, message: string };
 
@@ -11,5 +10,3 @@ function handleResponse(response: Response) {
     var error: string = response.message; // Works!
   }
 }
-
-if(a)  a = 1;
