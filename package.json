@@ -40,9 +40,6 @@
       }
     }
   },
-  "pre-commit": [
-    "lint"
-  ],
   "author": "likun",
   "license": "MIT",
   "devDependencies": {
@@ -97,5 +94,9 @@
     "react-router": "^4.1.1",
     "redux": "^3.6.0",
     "whatwg-fetch": "^2.0.3"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "flow"
+  ]
 }
