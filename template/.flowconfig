@@ -1,7 +1,0 @@
-[ignore]
-
-[include]
-./src/app.js
-[libs]
-
-[options]

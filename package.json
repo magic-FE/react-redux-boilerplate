@@ -7,7 +7,7 @@
     "start": "better-npm-run start",
     "compile": "better-npm-run compile",
     "lint": "eslint src",
-    "flow": "flow",
+    "flowCheck": "flow",
     "lint:fix": "npm run lint -- --fix",
     "start:dist": "better-npm-run start:dist"
   },
@@ -97,7 +97,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "pre-commit": [
-    "flow",
+    "flowCheck",
     "lint"
   ]
 }

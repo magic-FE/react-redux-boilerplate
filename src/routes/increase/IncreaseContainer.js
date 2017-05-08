@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
-import { actionCreatorMaps } from './reducers/increase';
+import { actionCreatorMaps as mapDispatchToProps } from './reducers/increase';
+import reducers from './reducers';
+import type { StoreWithInjectAble } from '$self-define';
 
 import Increase from './components/Increase';
-
-const mapDispatchToProps = actionCreatorMaps;
 
 const mapStateToProps = state => ({
   result: state.result,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Increase);
+export default (store: StoreWithInjectAble) => {
+  store.injectAll(reducers);
+  return connect(mapStateToProps, mapDispatchToProps)(Increase);
+};

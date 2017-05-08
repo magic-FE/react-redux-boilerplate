@@ -1,4 +1,4 @@
-// @flow
+// 
 const debug = require('debug')('app:bin:www');
 const ip = require('internal-ip');
 const detect = require('detect-port');

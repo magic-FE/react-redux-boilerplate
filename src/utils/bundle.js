@@ -7,12 +7,14 @@
 import React from 'react';
 
 type props = {
-  load: () => Promise<*>,
-  renderRealComponent: React$Component<*, *, *> => React$Element<any>
+  load: () => Promise<any>,
+  renderRealComponent: (
+    param: ?React$Component<any, any, any>
+  ) => React$Element<any>
 };
 
 type state = {
-  mod: ?React$Component<*, *, *>
+  mod: ?React$Component<any, any, any>
 };
 
 class Bundle extends React.Component<void, props, state> {
@@ -47,10 +49,9 @@ class Bundle extends React.Component<void, props, state> {
   }
 }
 
-export default (loadfn: () => Promise<*>) => () => (
+export default (loadfn: () => Promise<any>) => () => (
   <Bundle
     load={loadfn}
-    renderRealComponent={(ImportComponent: React$Component<*, *, *>) =>
-      React.createElement(ImportComponent)}
+    renderRealComponent={ImportComponent => React.createElement(ImportComponent)}
   />
 );

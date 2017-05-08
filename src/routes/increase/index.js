@@ -1,8 +1,4 @@
 import type { StoreWithInjectAble } from '$self-define';
 
-export default (store: StoreWithInjectAble) => () => {
-  import('./reducers').then(reducers => {
-    store.injectAll(reducers.default);
-  });
-  return import('./IncreaseContainer');
-};
+export default (store: StoreWithInjectAble) => () =>
+  import('./IncreaseContainer').then(result => result.default(store));

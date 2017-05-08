@@ -1,12 +1,12 @@
+// @flow
 import React from 'react';
-import './HomeView.less';
-
+import HomeViewLess from './HomeView.less';
 export const HomeView = () => (
   <div>
     <h4>Welcome!</h4>
     <img
       alt="A magic!"
-      className="magic"
+      className={HomeViewLess.magic}
       src="/images/magic.png"
     />
   </div>

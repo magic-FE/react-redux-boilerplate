@@ -3,7 +3,6 @@ import { stringify } from 'qs';
 // 本工具类只能用于接收和处理json数据，其他数据请使用fetch原生;
 
 const noop = () => {};
-declare var __DEV__: boolean;
 type credentials = 'include' | 'omit' | 'same-origin';
 type RequestConfig = {
   headers?: Object,

@@ -1,4 +1,5 @@
 // @flow
+declare var __DEV__: boolean;
 declare module '$self-define' {
   declare type StoreWithInjectAble = {
     inject: (namespace: any, reducer: any) => void,
@@ -13,7 +14,7 @@ declare module '$self-define' {
   };
   declare type RouteProps = {
     path: string,
-    component: (props?: Object) => React$Element<any>,
+    component: ?React$Component<any, any, any> | ((props?: Object) => React$Element<any>),
     routes?: Array<Object>,
     exact?: boolean
   };

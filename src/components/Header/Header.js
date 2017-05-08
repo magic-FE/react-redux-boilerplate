@@ -1,21 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.less';
+import { NavLink  } from 'react-router-dom';
+import HeaderModule from './Header.less';
 
 export const Header = () => (
   <div>
     <h1>Magic-FE React Redux Boilerplate</h1>
-    <Link to="/">
+    <NavLink exact  to="/" activeClassName={HeaderModule['route--active']}>
       Home
-    </Link>
+    </NavLink >
     {' · '}
-    <Link to="/increase">
+    <NavLink  to="/increase" activeClassName={HeaderModule['route--active']}>
       Increase
-    </Link>
-    {' · '}
-    <Link to="/increase2">
-      Increase2
-    </Link>
+    </NavLink >
   </div>
 );
 

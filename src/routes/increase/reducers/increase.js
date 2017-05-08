@@ -1,4 +1,4 @@
-// @flow
+// 
 import createReducers from '$utils/creators';
 import type { Dispatch } from 'redux';
 
