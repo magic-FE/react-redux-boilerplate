@@ -1,12 +1,13 @@
-type Success = { success: true, value: boolean };
-type Failed = { error: false, message: string };
+// @flow
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Test from './Test';
 
-type Response = Success | Failed;
-
-function handleResponse(response: Response) {
-  if (response.success) {
-    var value: boolean = response.value; // Works!
-  } else {
-    var error: string = response.message; // Works!
-  }
-}
+const MOUNT_NODE = document.getElementById('root');
+const App = () => {
+  return <Test test2={{ a: 'a', b: 1 }} />;
+};
+const render = () => {
+  ReactDOM.render(<App />, MOUNT_NODE);
+};
+render();

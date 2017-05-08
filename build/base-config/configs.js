@@ -29,7 +29,7 @@ module.exports = {
     vendors: [
       'react',
       'react-redux',
-      'react-router',
+      'react-router-dom',
       'redux',
       'react-dom'
     ],

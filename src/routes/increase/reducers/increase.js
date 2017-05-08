@@ -1,4 +1,6 @@
-import createReducers from 'UTILS/creators';
+// @flow
+import createReducers from '$utils/creators';
+import type { Dispatch } from 'redux';
 
 const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
 /**
@@ -6,26 +8,29 @@ const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
  * @param  {Number} value [description]
  * @return {[type]}       [description]
  */
-const incrementBase = (value = 1) => ({
+const incrementBase = (value: number = 1) => ({
   type: COUNTER_INCREMENT,
-  payload: value
+  payload: value,
 });
 
 /**
  * actions for this reducer
  */
-const doubleAsync = () => (dispatch, getState) => {
+const doubleAsync = () => (dispatch: Dispatch<*>, getState: () => Object) => {
   setTimeout(() => {
-    dispatch(incrementBase(getState().increase));
+    dispatch(incrementBase(getState().result));
   }, 1200);
 };
-const increment = () => incrementBase(1);
+const increment = incrementBase;
 
 export const actionCreatorMaps = {
   increment,
-  doubleAsync
+  doubleAsync,
 };
 
-export default createReducers({
-  [COUNTER_INCREMENT]: (state, action) => state + action.payload
-}, 0);
+export default createReducers(
+  {
+    [COUNTER_INCREMENT]: (state, action) => state + action.payload,
+  },
+  0
+);

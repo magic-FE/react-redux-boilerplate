@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "paths": {
+            "$utils/*": [
+                "src/utils/*"
+            ],
+            "$components/*": [
+                "src/components/*"
+            ],
+            "$styles/*": [
+                "src/styles/*"
+            ],
+            "$containers/*": [
+                "src/containers/*"
+            ],
+            "$reducers/*": [
+                "src/reducers/*"
+            ],
+            "$layouts/*": [
+                "src/layouts/*"
+            ],
+            "$flow-typed/*": [
+                "flow-typed/*"
+            ]
+        }
+    }
+}

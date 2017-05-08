@@ -3,5 +3,5 @@ export const toCamelCase = str => str.replace(/\_(\w)/g, (all, letter) => letter
 
 export default {
   toUnderCase,
-  toCamelCase
+  toCamelCase,
 };

@@ -7,7 +7,7 @@ const envConfig = env.config;
 const pkg = require('../../package.json');
 
 module.exports = paths => {
-  const App = [paths.src('app.js')];
+  const App = [paths.src('main.js')];
   const Vendors = envConfig.vendors.filter(dep => {
     if (pkg.dependencies[dep]) {
       return true;
@@ -27,7 +27,7 @@ module.exports = paths => {
       app: App,
       vendors: Vendors,
     },
-    devtool: isDev ? 'eval' : false,
+    devtool: isDev ? 'source-map' : false,
     output: {
       filename: '[name].[hash:8].js',
       path: paths.dist(),

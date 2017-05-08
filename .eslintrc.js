@@ -38,8 +38,13 @@ const ERROR = 2;
 //   import type {Bar, Foo} from 'Foo';
 // Also supports 'let' and 'const'.
 const variableNamePattern = String.raw`\s*[a-zA-Z_$][a-zA-Z_$\d]*\s*`;
-const maxLenIgnorePattern = String.raw`^(?:var|let|const|import type)\s+` +
-  '{?' + variableNamePattern + '(?:,' + variableNamePattern + ')*}?' +
+const maxLenIgnorePattern =
+  String.raw`^(?:var|let|const|import type)\s+` +
+  '{?' +
+  variableNamePattern +
+  '(?:,' +
+  variableNamePattern +
+  ')*}?' +
   String.raw`\s*(?:=\s*require\(|from)[a-zA-Z_+./"'\s\d\-]+\)?[^;\n]*[;\n]`;
 
 function getBaseConfig() {
@@ -49,14 +54,7 @@ function getBaseConfig() {
       ecmaVersion: 6,
       sourceType: 'module',
     },
-    extends:[
-      "plugin:flowtype/recommended"
-    ]
-    plugins: [
-      'babel',
-      'flowtype',
-      'react',
-    ],
+    plugins: ['flowtype', 'react'],
 
     // Tries to match the jshint configuration as closely as possible, with the
     // exeception of a few things that jshint doesn't check, but that we really
@@ -129,15 +127,15 @@ function getBaseConfig() {
       // Best Practices <http://eslint.org/docs/rules/#best-practices>
 
       // probably a bug, we shouldn't actually even use this yet, because of IE8
-      'accessor-pairs': [WARNING, {setWithoutGet: true}],
+      'accessor-pairs': [WARNING, { setWithoutGet: true }],
       // probably too noisy ATM
       'block-scoped-var': OFF,
       // cyclomatic complexity, we're too far gone
-      'complexity': OFF,
+      complexity: OFF,
       // require return statements to either always or never specify values
       'consistent-return': WARNING,
       // style guide: Always use brackets, even when optional.
-      'curly': [WARNING, 'all'],
+      curly: [WARNING, 'all'],
       // we don't do this/care about this
       'default-case': OFF,
       // disabled in favor of our temporary fork
@@ -145,7 +143,7 @@ function getBaseConfig() {
       // we don't do this/care about this, but probably should eventually
       'dot-location': OFF,
       // disabled as it's too noisy ATM
-      'eqeqeq': [OFF, 'allow-null'],
+      eqeqeq: [OFF, 'allow-null'],
       // we don't do this/care about this, equivalent to jshint forin
       'guard-for-in': OFF,
       // we have too many internal examples/tools using this
@@ -183,7 +181,7 @@ function getBaseConfig() {
       // Should be effectively equivalent to jshint W028 - allowing the use
       // of labels in very specific situations. ESLint no-empty-labels was
       // deprecated.
-      'no-labels': [ERROR, {allowLoop: true, allowSwitch: true}],
+      'no-labels': [ERROR, { allowLoop: true, allowSwitch: true }],
       // lone blocks create no scope, will ignore blocks with let/const
       'no-lone-blocks': WARNING,
       // equivalent to jshint loopfunc
@@ -195,7 +193,7 @@ function getBaseConfig() {
       // equivalent to jshint multistr, consider using es6 template strings
       'no-multi-str': ERROR,
       // equivalent to jshint W02OFF, similar to no-extend-native
-      'no-native-reassign': [ERROR, {exceptions: ['Map', 'Set']}],
+      'no-native-reassign': [ERROR, { exceptions: ['Map', 'Set'] }],
       // equivalent to jshint evil/W054
       'no-new-func': ERROR,
       // don't use constructors for side-effects, equivalent to jshint nonew
@@ -237,17 +235,17 @@ function getBaseConfig() {
       // equivalent to jshint withstmt
       'no-with': OFF,
       // require radix argument in parseInt, we do this in most places already
-      'radix': WARNING,
+      radix: WARNING,
       // we don't do this/care about this
       'vars-on-top': OFF,
       // equivalent to jshint immed
       'wrap-iife': OFF,
       // probably too noisy ATM
-      'yoda': OFF,
+      yoda: OFF,
 
       // Strict Mode <http://eslint.org/docs/rules/#strict-mode>
       // jshint wasn't checking this, and the compiler should add this anyways
-      'strict': OFF,
+      strict: OFF,
 
       // Variables <http://eslint.org/docs/rules/#variables>
       // we don't do this/care about this
@@ -269,7 +267,7 @@ function getBaseConfig() {
       // using undefined is safe because we enforce no-shadow-restricted-names
       'no-undefined': OFF,
       // equivalent to jshint unused
-      'no-unused-vars': [WARNING, {args: 'none'}],
+      'no-unused-vars': [WARNING, { args: 'none' }],
       // too noisy
       'no-use-before-define': OFF,
 
@@ -290,10 +288,10 @@ function getBaseConfig() {
       'array-bracket-spacing': WARNING,
       // TODO: enable this with consensus on single line blocks
       'block-spacing': OFF,
-      'brace-style': [WARNING, '1tbs', {allowSingleLine: true}],
+      'brace-style': [WARNING, '1tbs', { allowSingleLine: true }],
       // too noisy at the moment, and jshint didn't check it
-      'camelcase': [OFF, {properties: 'always'}],
-      'comma-spacing': [WARNING, {before: false, after: true}],
+      camelcase: [OFF, { properties: 'always' }],
+      'comma-spacing': [WARNING, { before: false, after: true }],
       // jshint had laxcomma, but that was against our style guide
       'comma-style': [WARNING, 'last'],
       'computed-property-spacing': [WARNING, 'never'],
@@ -308,19 +306,17 @@ function getBaseConfig() {
       'id-length': OFF,
       'id-match': OFF,
       // we weren't enforcing this with jshint, so erroring would be too noisy
-      'indent': [WARNING, 2, {SwitchCase: 1}],
+      indent: [WARNING, 2, { SwitchCase: 1 }],
       // we use single quotes for JS literals, double quotes for JSX literals
       'jsx-quotes': [WARNING, 'prefer-double'],
       // we may use extra spaces for alignment
-      'key-spacing': [OFF, {beforeColon: false, afterColon: true}],
+      'key-spacing': [OFF, { beforeColon: false, afterColon: true }],
       'keyword-spacing': [WARNING],
       'lines-around-comment': OFF,
       // should be handled by a generic TXT linter instead
       'linebreak-style': [OFF, 'unix'],
       'max-depth': OFF,
-      'max-len': [WARNING, 120, 2,
-        {'ignorePattern': maxLenIgnorePattern},
-      ],
+      'max-len': [WARNING, 120, 2, { ignorePattern: maxLenIgnorePattern }],
       'max-nested-callbacks': OFF,
       'max-params': OFF,
       'max-statements': OFF,
@@ -357,7 +353,7 @@ function getBaseConfig() {
       // too noisy ATM
       'object-curly-spacing': OFF,
       // makes indentation warnings clearer
-      'one-var': [WARNING, {initialized: 'never'}],
+      'one-var': [WARNING, { initialized: 'never' }],
       // prefer `x += 4` over `x = x + 4`
       'operator-assignment': [WARNING, 'always'],
       // equivalent to jshint laxbreak
@@ -365,27 +361,23 @@ function getBaseConfig() {
       'padded-blocks': OFF,
       // probably too noisy on pre-ES5 code
       'quote-props': [OFF, 'as-needed'],
-      'quotes': [WARNING, 'single', 'avoid-escape'],
+      quotes: [WARNING, 'single', 'avoid-escape'],
       'require-jsdoc': OFF,
-      'semi-spacing': [WARNING, {before: false, after: true}],
+      'semi-spacing': [WARNING, { before: false, after: true }],
       // equivalent to jshint asi/W032
-      'semi': [WARNING, 'always'],
+      semi: [WARNING, 'always'],
       'sort-vars': OFF,
       // require `if () {` instead of `if (){`
       'space-before-blocks': [WARNING, 'always'],
       // require `function foo()` instead of `function foo ()`
-      'space-before-function-paren': [
-        WARNING,
-        {anonymous: 'never', named: 'never'},
-      ],
+      'space-before-function-paren': [WARNING, { anonymous: 'never', named: 'never' }],
       // incompatible with our legacy inline type annotations
       'space-in-parens': [OFF, 'never'],
-      'space-infix-ops': [WARNING, {int32Hint: true}],
-      'space-unary-ops': [WARNING, {words: true, nonwords: false}],
+      'space-infix-ops': [WARNING, { int32Hint: true }],
+      'space-unary-ops': [WARNING, { words: true, nonwords: false }],
       // TODO: Figure out a way to do this that doesn't break typechecks
       // or wait for https://github.com/eslint/eslint/issues/2897
-      'spaced-comment':
-        [OFF, 'always', {exceptions: ['jshint', 'jslint', 'eslint', 'global']}],
+      'spaced-comment': [OFF, 'always', { exceptions: ['jshint', 'jslint', 'eslint', 'global'] }],
       'wrap-regex': OFF,
 
       // ECMAScript 6 <http://eslint.org/docs/rules/#ecmascript-6>
@@ -393,7 +385,7 @@ function getBaseConfig() {
       // Forked to fb-www/arrow-parens to fix issues with flow and add fixer
       'arrow-parens': OFF,
       // tbgs finds *very few* places where we don't put spaces around =>
-      'arrow-spacing': [WARNING, {before: true, after: true}],
+      'arrow-spacing': [WARNING, { before: true, after: true }],
       // violation of the ES6 spec, won't transform
       'constructor-super': ERROR,
       // https://github.com/babel/babel-eslint#known-issues
@@ -416,15 +408,7 @@ function getBaseConfig() {
       // there are legitimate use-cases for an empty generator
       'require-yield': OFF,
 
-      // eslint-plugin-babel <https://github.com/babel/eslint-plugin-babel>
-      'babel/generator-star-spacing': OFF,
-      'babel/new-cap': OFF,
-      'babel/array-bracket-spacing': OFF,
-      'babel/object-curly-spacing': OFF,
-      'babel/object-shorthand': OFF,
-      'babel/arrow-parens': OFF,
-      'babel/no-await-in-loop': OFF,
-      'babel/flow-object-type': [WARNING, 'comma'],
+      'no-await-in-loop': OFF,
 
       // eslint-plugin-react <https://github.com/yannickcr/eslint-plugin-react>
       // TODO: We're being extremely conservative here as we roll out eslint on
@@ -485,12 +469,14 @@ function getBaseConfig() {
       // annotations.
       'flowtype/define-flow-type': WARNING,
       'flowtype/use-flow-type': WARNING,
+      'flowtype/object-type-delimiter': [WARNING, 'comma'],
     },
 
     // Defines a basic set of globals
     env: {
       browser: true,
       es6: true,
+      node: true
     },
 
     // The jshint code had more globals, which may have had something to do with
@@ -499,9 +485,7 @@ function getBaseConfig() {
     // Values of true mean the global may be modified. Values of false represent
     // constants.
     globals: {
-      __DEV__: true,
-      module: false,
-      require: false
+      __DEV__: true
     },
   };
 }
@@ -522,7 +506,7 @@ var extendedConfig = {
   },
 };
 
-Object.keys(extendedConfig).forEach((key) => {
+Object.keys(extendedConfig).forEach(key => {
   config[key] = Object.assign(config[key], extendedConfig[key]);
 });
 

@@ -10,7 +10,7 @@ const startCompile = () => {
   debug(`Start compile with env '${chalk.green(process.env.NODE_ENV)}'`);
   return Promise.resolve()
     .then(() => compiler(webpackConfig))
-    .then((stats) => {
+    .then(stats => {
       if (stats.hasWarnings() && env.isProd) {
         throw new Error('Production not allow warnig, exit .');
       }
@@ -18,11 +18,11 @@ const startCompile = () => {
       fs.copySync(paths.public(), paths.dist());
       return stats;
     })
-    .then((stats) => {
+    .then(stats => {
       debug(stats.toString(env.config.stats));
       debug('Success compile !!');
     })
-    .catch((error) => {
+    .catch(error => {
       debug('Compile with Error.', error);
       process.exit();
     });

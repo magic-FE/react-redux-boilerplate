@@ -29,7 +29,7 @@
       "command": "rimraf dist/* && npm run lint:fix && node bin/compile",
       "env": {
         "DEBUG": "app:*:compile*",
-        "NODE_ENV": "production"
+        "NODE_ENV": "dev"
       }
     },
     "start:dist": {
@@ -60,7 +60,6 @@
     "detect-port": "^1.1.1",
     "eslint": "^3.12.2",
     "eslint-import-resolver-webpack": "^0.8.0",
-    "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flowtype": "^2.32.1",
     "eslint-plugin-import": "2.1.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
@@ -77,6 +76,8 @@
     "less-loader": "^2.2.3",
     "postcss-loader": "^1.2.1",
     "pre-commit": "^1.2.2",
+    "prepack-webpack-plugin": "^1.1.0",
+    "prop-types": "^15.5.8",
     "redux-logger": "^2.7.4",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
@@ -90,8 +91,9 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
-    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   },
   "pre-commit": [

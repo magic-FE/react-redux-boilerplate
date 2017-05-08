@@ -12,5 +12,5 @@ module.exports = {
   src: base.bind(null, 'src'),
   dist: base.bind(null, 'dist'),
   server: base.bind(null, 'server'),
-  public: base.bind(null, 'src', 'static')
+  public: base.bind(null, 'src', 'static'),
 };

@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { hashHistory, Router } from 'react-router';
+import React from 'react';
+import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-class App extends Component {
-  static propTypes = {
-    routes: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-  }
+type props = {
+  routes: {},
+  store: {}
+};
+
+class App extends React.Component<void, props, void> {
   shouldComponentUpdate() {
     return false;
   }
@@ -14,7 +15,7 @@ class App extends Component {
     const { routes, store } = this.props;
     return (
       <Provider store={store}>
-        <Router history={hashHistory} >
+        <Router>
           {routes}
         </Router>
       </Provider>

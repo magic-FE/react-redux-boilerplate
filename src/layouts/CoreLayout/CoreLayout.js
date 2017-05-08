@@ -15,6 +15,6 @@ const CoreLayout = (props) => {
   );
 };
 CoreLayout.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 export default CoreLayout;

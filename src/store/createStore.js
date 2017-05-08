@@ -1,7 +1,6 @@
 import { applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { browserHistory } from 'react-router';
-import location, { updateLocation } from 'REDUCERS/location';
+import location, { updateLocation } from '$reducers/location';
 import createStore from './createInjectAbleStore';
 
 export default (initialState = {}) => {
@@ -27,8 +26,6 @@ export default (initialState = {}) => {
       ...enhancers
     ), { location }
   );
-  browserHistory.listen(updateLocation(store));
-
   // inject global reducers
   store.injectAll(globalReducerMaps);
 

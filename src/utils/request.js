@@ -3,6 +3,18 @@ import { stringify } from 'qs';
 // 本工具类只能用于接收和处理json数据，其他数据请使用fetch原生;
 
 const noop = () => {};
+declare var __DEV__: boolean;
+type credentials = 'include' | 'omit' | 'same-origin';
+type RequestConfig = {
+  headers?: Object,
+  credentials?: credentials,
+  body?: Object,
+  onStart?: () => void,
+  onComplete?: () => void,
+  onError?: () => void,
+  onSuccessFilter?: (result: Object) => Object | Error,
+  onSuccess?: () => void
+};
 
 let globalCallbacks = {
   onStart: noop,
@@ -11,10 +23,13 @@ let globalCallbacks = {
   onError: noop,
   onSuccessFilter: result => result,
 };
-let globalConifg = {};
+let globalConifg: {
+  headers?: {},
+  body?: {},
+  credentials?: credentials
+} = {};
 export const config = (
   {
-    method = 'GET',
     headers,
     credentials = 'omit',
     body,
@@ -23,7 +38,7 @@ export const config = (
     onError = noop,
     onSuccessFilter = result => result,
     onSuccess = noop,
-  } = {}
+  }: RequestConfig = {}
 ) => {
   globalCallbacks = {
     onStart,
@@ -33,23 +48,31 @@ export const config = (
     onSuccessFilter,
   };
   globalConifg = {
-    method,
     headers,
     body,
     credentials,
   };
 };
-const catchCallbackFn = fn => params => {
-  try {
-    fn(params);
-  } catch (error) {
-    globalCallbacks.onError(error);
-    globalCallbacks.onComplete(error);
-    throw error;
+
+const request = (
+  {
+    headers = {},
+    credentials = 'omit',
+  }: {
+    headers?: Object,
+    credentials?: credentials
+  } = {}
+) => (urlWithMethod: string, params?: Object = {}) => {
+  if (__DEV__) {
+    if (!/[get|post|put|delete]\s+\S*/i.test(urlWithMethod)) {
+      throw new Error(
+        `
+      The url must contains request method, like "GET http://www.xxx.com".
+      But received url is "${urlWithMethod}"`
+      );
+    }
   }
-};
-const request = ({ headers = {}, credentials = 'omit' } = {}) => (urlWithMethod, params = {}) => {
-  let [method, url] = urlWithMethod.split(' '); // eslint-disable-line
+  let [method, url] = urlWithMethod.split(/\s+/);
   const { onStart, onComplete, onSuccess, onError, onSuccessFilter } = globalCallbacks;
   const assignHeaders = globalConifg.headers
     ? {
@@ -63,16 +86,16 @@ const request = ({ headers = {}, credentials = 'omit' } = {}) => (urlWithMethod,
       ...params,
     }
     : params;
-  const options = {
+  const options: Object = {
     ...globalConifg,
     headers: assignHeaders,
     method,
     credentials,
   };
-  assignBody = JSON.stringify(JSON.parse(JSON.stringify(assignBody)));
+  assignBody = JSON.parse(JSON.stringify(assignBody));
   if (Object.keys(assignBody).length) {
     if (method.toUpperCase() !== 'GET') {
-      options.body = assignBody;
+      options.body = JSON.stringify(assignBody);
     } else {
       url += `?${stringify(assignBody)}`;
     }
@@ -104,9 +127,7 @@ const request = ({ headers = {}, credentials = 'omit' } = {}) => (urlWithMethod,
             }
           );
         } else {
-          console.log(response);
           const error = new Error(response.statusText);
-          error.response = response;
           onError(error);
           onComplete(error);
           reject(error);
@@ -119,30 +140,36 @@ const request = ({ headers = {}, credentials = 'omit' } = {}) => (urlWithMethod,
       }
     );
   });
-  promise.success = fn => {
+  const requestPromise = {};
+  requestPromise.success = (fn: Object => void) => {
     promise.then(result => {
-      if (typeof fn === 'function') {catchCallbackFn(fn)(result);}
+      if (typeof fn === 'function') {
+        fn(result);
+      }
     });
-    return promise;
+    return requestPromise;
   };
-  promise.error = fn => {
-    promise.then(null, error => {
-      if (typeof fn === 'function') {catchCallbackFn(fn)(error);}
+  requestPromise.error = (fn: Error => void) => {
+    promise.then(noop, error => {
+      if (typeof fn === 'function') {
+        fn(error);
+      }
     });
-    return promise;
+    return requestPromise;
   };
-  promise.complete = fn => {
-    fn = typeof fn === 'function' ? catchCallbackFn(fn) : noop;
+  requestPromise.complete = (fn: (?Error, ?Object) => void) => {
+    fn = typeof fn === 'function' ? fn : noop;
     promise.then(
-      result => {
+      (result: Object) => {
         fn(null, result);
       },
-      error => {
+      (error: Error) => {
         fn(error);
       }
     );
-    return promise;
+    return requestPromise;
   };
-  return promise;
+  return requestPromise;
 };
+
 export default request;

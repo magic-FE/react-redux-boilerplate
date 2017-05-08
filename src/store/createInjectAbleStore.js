@@ -10,7 +10,7 @@ const IDENTITY_REDUCER = (state = null) => state;
 const makeEmptyReducerMap = () => ({
   // putting this here because `combineReducers` will complain if there isn't at least
   // one reducer initially.
-  [FAKE_INITIAL_REDUCER_NAMESPACE]: IDENTITY_REDUCER
+  [FAKE_INITIAL_REDUCER_NAMESPACE]: IDENTITY_REDUCER,
 });
 
 const createInjectableStore = (preloadedState, enhancer, defaultReducers) => {
@@ -49,7 +49,7 @@ const createInjectableStore = (preloadedState, enhancer, defaultReducers) => {
     ...store,
     inject,
     injectAll,
-    clearReducers
+    clearReducers,
   };
 };
 

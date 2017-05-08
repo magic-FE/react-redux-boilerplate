@@ -8,5 +8,6 @@ module.exports = paths => ({
   '$containers': paths.src('containers'),
   '$styles': paths.src('styles'),
   '$reducers': paths.src('reducers'),
-  '$layouts': paths.src('layouts')
+  '$layouts': paths.src('layouts'),
+  '$flow-typed': paths.root('flow-typed'),
 });

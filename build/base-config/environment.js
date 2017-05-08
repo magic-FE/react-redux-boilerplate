@@ -8,11 +8,10 @@ module.exports = {
    * http://stackoverflow.com/questions/30030031
    */
   'process.env': {
-    NODE_ENV: JSON.stringify(NODE_ENV)
+    NODE_ENV: JSON.stringify(NODE_ENV),
   },
   env: NODE_ENV,
   __DEV__: NODE_ENV === 'development',
   __PRO__: NODE_ENV === 'production',
-  __TEST__: NODE_ENV === 'test',
-  config: Object.assign(envConfigs.defaults, envConfigs[NODE_ENV] || {})
+  config: Object.assign(envConfigs.defaults, envConfigs[NODE_ENV] || {}),
 };
