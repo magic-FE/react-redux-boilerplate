@@ -5,9 +5,9 @@ import RouteWithSubRoutes from '$components/RouteWithSubRoutes';
 import bundleLoader from '$utils/bundle';
 import Home from './home';
 import Increase from './increase';
-import type { StoreWithInjectAble } from '$self-define';
+import type { StoreWithInjectAble, RouteProps } from '$self-define';
 
-function routes(store): Array<routeProps> {
+function routes(store): Array<RouteProps> {
   return [
     {
       path: '/',

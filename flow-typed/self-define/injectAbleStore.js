@@ -1,3 +1,4 @@
+// @flow
 declare module '$self-define' {
   declare type StoreWithInjectAble = {
     inject: (namespace: any, reducer: any) => void,
@@ -10,7 +11,7 @@ declare module '$self-define' {
     subscribe(listener: () => void): () => void,
     replaceReducer(nextReducer: (state: any, action: any) => any): void
   };
-  declare type routeProps = {
+  declare type RouteProps = {
     path: string,
     component: (props?: Object) => React$Element<any>,
     routes?: Array<Object>,

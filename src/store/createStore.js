@@ -1,6 +1,6 @@
 import { applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import location, { updateLocation } from '$reducers/location';
+import location from '$reducers/location';
 import createStore from './createInjectAbleStore';
 
 export default (initialState = {}) => {
@@ -19,13 +19,9 @@ export default (initialState = {}) => {
     middleware.push(logger);
   }
 
-  const store = createStore(
-    initialState,
-    compose(
-      applyMiddleware(...middleware),
-      ...enhancers
-    ), { location }
-  );
+  const store = createStore(initialState, compose(applyMiddleware(...middleware), ...enhancers), {
+    location,
+  });
   // inject global reducers
   store.injectAll(globalReducerMaps);
 
