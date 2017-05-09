@@ -62,10 +62,31 @@ module.exports = () => {
         {
           loader: 'url-loader',
           options: {
-            limit: 8192,
+            limit: 1024 * 4,
             useRelativePath: isProd,
             name: `images/[name].${env.config.hash}.[ext]`,
           },
+        },
+      ],
+    },
+    {
+      test: /\.(woff|woff2|otf|ttf|eot)(\?.*)?$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 1024 * 10,
+            useRelativePath: isProd,
+            name: `fonts/[name].${env.config.hash}.[ext]`,
+          },
+        },
+      ],
+    },
+    {
+      test: /\.(txt|svg)$/,
+      use: [
+        {
+          loader: 'raw-loader',
         },
       ],
     },
