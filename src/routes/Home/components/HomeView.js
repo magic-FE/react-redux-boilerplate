@@ -1,14 +1,11 @@
 // @flow
 import React from 'react';
-import HomeViewLess from './HomeView.less';
+import { magic } from './HomeView.less';
+import logo from '$images/magic.png';
 export const HomeView = () => (
   <div>
     <h4>Welcome!</h4>
-    <img
-      alt="A magic!"
-      className={HomeViewLess.magic}
-      src="/images/magic.png"
-    />
+    <img alt="A magic!" className={magic} src={logo} />
   </div>
 );
 

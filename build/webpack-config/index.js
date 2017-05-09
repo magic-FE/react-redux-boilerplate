@@ -7,12 +7,15 @@ const loaders = require('./loaders')();
 const plugins = require('./plugins')(paths);
 
 debug('Creating configuration.');
-module.exports = Object.assign({
-  plugins,
-  resolve: {
-    alias
+module.exports = Object.assign(
+  {
+    plugins,
+    resolve: {
+      alias,
+    },
+    module: {
+      loaders,
+    },
   },
-  module: {
-    loaders
-  }
-}, base);
+  base
+);

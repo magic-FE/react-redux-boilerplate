@@ -17,6 +17,7 @@ module.exports = () => {
     },
     {
       test: /\.css$/,
+      include: /node_modules/,
       use: [
         {
           loader: 'style-loader',
@@ -25,16 +26,13 @@ module.exports = () => {
           loader: 'css-loader',
           options: {
             minimize: isProd,
-            module: true,
           },
-        },
-        {
-          loader: 'postcss-loader',
         },
       ],
     },
     {
-      test: /\.less$/,
+      test: /\.(less|css)$/,
+      exclude: /node_modules/,
       use: [
         {
           loader: 'style-loader',
@@ -44,6 +42,7 @@ module.exports = () => {
           options: {
             minimize: isProd,
             module: true,
+            camelCase: true,
           },
         },
         {
@@ -64,6 +63,8 @@ module.exports = () => {
           loader: 'url-loader',
           options: {
             limit: 8192,
+            useRelativePath: isProd,
+            name: `images/[name].${env.config.hash}.[ext]`,
           },
         },
       ],
@@ -73,9 +74,7 @@ module.exports = () => {
     debug('Apply ExtractTextPlugin to CSS loaders.');
     rules
       .filter(
-        rule =>
-          rule.use &&
-          rule.use.find(loaderObj => /css/.test(loaderObj.loader.split('?')[0]))
+        rule => rule.use && rule.use.find(loaderObj => /css/.test(loaderObj.loader.split('?')[0]))
       )
       .forEach(rule => {
         const first = rule.use[0];

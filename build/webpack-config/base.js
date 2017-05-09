@@ -29,7 +29,7 @@ module.exports = paths => {
     },
     devtool: isDev ? 'source-map' : false,
     output: {
-      filename: '[name].[hash:8].js',
+      filename: `[name].${envConfig.hash}.js`,
       path: paths.dist(),
       publicPath: '',
     },

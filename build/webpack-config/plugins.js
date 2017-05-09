@@ -14,7 +14,7 @@ module.exports = paths => {
     new HtmlWebpackPlugin({
       template: paths.src('index.html'),
       hash: false,
-      favicon: paths.src('static/favicon.ico'),
+      favicon: paths.src('favicon.ico'),
       filename: 'index.html',
       inject: 'body',
       minify: {
@@ -40,7 +40,7 @@ module.exports = paths => {
     debug('Apply ExtractTextPlugin.');
     plugins.push(
       new ExtractTextPlugin({
-        filename: '[name].[hash:8].css',
+        filename: `[name].${env.config.hash}.css`,
         allChunks: true,
       })
     );

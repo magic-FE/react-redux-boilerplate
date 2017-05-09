@@ -3,27 +3,15 @@
         "experimentalDecorators": true,
         "baseUrl": "./",
         "paths": {
-            "$utils/*": [
-                "src/utils/*"
-            ],
-            "$components/*": [
-                "src/components/*"
-            ],
-            "$styles/*": [
-                "src/styles/*"
-            ],
-            "$containers/*": [
-                "src/containers/*"
-            ],
-            "$reducers/*": [
-                "src/reducers/*"
-            ],
-            "$layouts/*": [
-                "src/layouts/*"
-            ],
-            "$flow-typed/*": [
-                "flow-typed/*"
-            ]
+            "$utils/*": ["src/utils/*"],
+            "$components/*": ["src/components/*"],
+            "$styles/*": ["src/styles/*"],
+            "$images/*": ["src/assets/images/*"],
+            "$fonts/*": ["src/assets/fonts/*"],
+            "$containers/*": ["src/containers/*"],
+            "$reducers/*": ["src/reducers/*"],
+            "$layouts/*": ["src/layouts/*"],
+            "$flow-typed/*": ["flow-typed/*"]
         }
     }
 }

@@ -7,6 +7,8 @@ module.exports = paths => ({
   '$components': paths.src('components'),
   '$containers': paths.src('containers'),
   '$styles': paths.src('styles'),
+  '$images': paths.src('assets/images'),
+  '$fonts': paths.src('assets/fonts'),
   '$reducers': paths.src('reducers'),
   '$layouts': paths.src('layouts'),
   '$flow-typed': paths.root('flow-typed'),
