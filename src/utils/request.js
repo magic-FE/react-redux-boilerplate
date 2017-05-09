@@ -1,19 +1,9 @@
 import 'whatwg-fetch';
 import { stringify } from 'qs';
+import type { Credentials, RequestConfig } from '$self-define';
 // 本工具类只能用于接收和处理json数据，其他数据请使用fetch原生;
 
 const noop = () => {};
-type credentials = 'include' | 'omit' | 'same-origin';
-type RequestConfig = {
-  headers?: Object,
-  credentials?: credentials,
-  body?: Object,
-  onStart?: () => void,
-  onComplete?: () => void,
-  onError?: () => void,
-  onSuccessFilter?: (result: Object) => Object | Error,
-  onSuccess?: () => void
-};
 
 let globalCallbacks = {
   onStart: noop,
@@ -25,7 +15,7 @@ let globalCallbacks = {
 let globalConifg: {
   headers?: {},
   body?: {},
-  credentials?: credentials
+  credentials?: Credentials
 } = {};
 export const config = (
   {
@@ -59,7 +49,7 @@ const request = (
     credentials = 'omit',
   }: {
     headers?: Object,
-    credentials?: credentials
+    credentials?: Credentials
   } = {}
 ) => (urlWithMethod: string, params?: Object = {}) => {
   if (__DEV__) {

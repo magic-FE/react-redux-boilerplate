@@ -2,7 +2,7 @@ const debug = require('debug')('app:webpack:plugins');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
+// const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
 const env = require('../base-config/environment');
 
 const isDev = env.__DEV__;
@@ -49,9 +49,6 @@ module.exports = paths => {
     debug('Enable OccurenceOrder,UglifyJs for production.');
     plugins.push(
       new webpack.optimize.OccurrenceOrderPlugin(), // 根据模块使用情况 排序模块序号
-      new PrepackWebpackPlugin({
-        test: /\.js($|\?)/i,
-      }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           unused: true,

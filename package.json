@@ -29,7 +29,7 @@
       "command": "rimraf dist/* && npm run lint:fix && node bin/compile",
       "env": {
         "DEBUG": "app:*:compile*",
-        "NODE_ENV": "dev"
+        "NODE_ENV": "production"
       }
     },
     "start:dist": {
@@ -76,7 +76,6 @@
     "less-loader": "^2.2.3",
     "postcss-loader": "^1.2.1",
     "pre-commit": "^1.2.2",
-    "prepack-webpack-plugin": "^1.1.0",
     "prop-types": "^15.5.8",
     "redux-logger": "^2.7.4",
     "rimraf": "^2.5.4",

@@ -18,4 +18,15 @@ declare module '$self-define' {
     routes?: Array<Object>,
     exact?: boolean
   };
+  declare type Credentials = 'include' | 'omit' | 'same-origin';
+  declare type RequestConfig = {
+    headers?: Object,
+    credentials?: Credentials,
+    body?: Object,
+    onStart?: () => void,
+    onComplete?: () => void,
+    onError?: () => void,
+    onSuccessFilter?: (result: Object) => Object | Error,
+    onSuccess?: () => void
+  };
 }
